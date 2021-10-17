@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimum integer that can be obtained by swapping adjacent digits of different parity</title>
+</head>
+
+<body>
+  <header id="header">
+    <h1>Minimum integer that can be obtained by swapping adjacent digits of different parity</h1>
+  </header>
+
+  <nav>
+    <a href="#code">View Code</a>
+    <a href="#contact" style="margin: 10px;">Auther Details</a>
+  </nav>
+  <hr>
+  <section>
+    <h3>Problem Statement:</h2>
+      <h4>Write a code in any programming language that counts the digits in a number.</h4>
+
+      <article>
+        <h3>Sample Input:</h3>
+        <p><code>arr[]=[5,6,9,7]</code></p>
+
+        <h3>Sample Output:</h3>
+        <p><samp>9</samp></p>
+
+        <h3>Explanation</h3>
+        <p>All such subsequences of given array will be {5}, {6}, {9},
+          {7}, {5, 6}, {6, 7}, {6, 9}, {5, 6, 9}, {5, 6, 7}.</p>
+      </article>
+      <hr>
+      <h3 id="code">Code in Java </h3>
+      <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to <s>copy</s> code (Windows).<br>
+
+        Press <kbd>Cmd</kbd> + <kbd>C</kbd> to <s>copy</s> code (Mac OS).</p>
+      <pre>
+            <code>import java.util.*;</code>
+            <code>import java.io.*;</code>
+
+            <code>class GFG</code>
+            <code>{</code>
+                <code>static int validsubsequences(int arr[], int n){</code>
+                <code>long dp[][] = new long [n + 1][2];</var>  = 0</code>
+                <code>for(int i = 0; i < n + 1; i++)</code>
+                <code>{</code>
+
+                <code>dp[i][0] = 0;</code>
+                   <code>dp[i][1] = 0;</code>
+                <code>}</code>
+
+                <code>for(int i = 1; i <= n; i++)</code>
+                <code>{</code>
+                  <code>if (arr[i - 1] % 2 != 0)</code>
+                  <code>{</code>
+                  <code>dp[i][1] += 1;</code>
+                  <code>dp[i][1] += dp[i - 1][0];</code>
+                  <code>dp[i][1] += dp[i - 1][1];</code>
+                  <code>dp[i][0] += dp[i - 1][0];</code>
+                  <code>}</code>
+                <code>else</code>
+            <code>{</code>
+              <code>dp[i][0] += 1;</code>
+              <code>dp[i][0] += dp[i - 1][1];</code>
+              <code> dp[i][0] += dp[i - 1][0];</code>
+              <code>dp[i][1] += dp[i - 1][1];</code>
+              <code>}</code>
+              <code>}</code>
+              <code>return (int)(dp[n][0] + dp[n][1]);</code>
+              <code>public static void main(String[] args)</code>
+              <code>{</code>
+                <code>int arr[] = { 5, 6, 9, 7 };</code>
+                 <code>int n = arr.length;</code>
+
+            <code>System.out.print(validsubsequences(arr, n));</code>
+            <code>}</code>
+            <code>}</code>
+<code>}</code>
+<code>}</code>
+
+        </pre>
+
+      <h3>algorithm</h3>
+      <p>
+        After each iteration the number gets reduce by 10, means if the number initially of 10<sup>5</sup>, but after iteration it become 0;
+      </p>
+
+      <h3>Complexity</h3>
+      <p>Time Complexity: O(N) where N is digits present in number</p>
+      <p>Auxiliary Space Complexity : O(N)</p>
+
+      </pre>
+      <h3>Reference: </h3>
+      <p>Geeksforgeeks</p>
+      <a href="https://www.geeksforgeeks.org/program-count-digits-integer-3-different-methods/"> Click to see more algorithms</a>
+
+      <hr>
+      <br>
+      <nav>
+        <a href="#header"><small>Move to top</small></a>
+      </nav>
+
+
+
+  </section>
+  <footer>
+    <address id="contact">
+      <p><strong>Contact Details:</strong>
+        Auther <em>Om Khairnar</em> <a href="mailto:om.khairnar@walchandsangli.ac.in">Click to Mail Me</a>
+      </p>
+    </address>
+  </footer>
+</body>
+
+</html>
